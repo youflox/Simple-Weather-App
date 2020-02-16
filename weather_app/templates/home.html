@@ -1,0 +1,29 @@
+{% extends 'layout.html'%}
+
+{% block head%}
+<link rel="stylesheet" type="text/css" href="static/style.css">
+    {% endblock head %}
+
+{% block body %}
+<div class = 'header'>
+<h1 class="title">
+    Weather App
+</h1>
+</div>
+    <form  method = 'post'>
+        <div class="q">
+            <br><br>
+            <label for="city_name",>Enter City Name :</label>
+            <input type="text", placeholder="City name", id = 'city_name', name = 'city_name'>
+            <button for ='city_name' class="check_btn" >Check</button>
+        </div>
+        <div>
+        {% if report%}
+
+           <h2 >Temp : {{report['weather']}} </h2>
+            <h2>Sky : {{report['main']}} </h2>
+
+        {% endif%}
+        </div>
+    </form>
+    {% endblock %}
