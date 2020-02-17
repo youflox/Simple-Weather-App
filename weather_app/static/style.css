@@ -1,4 +1,4 @@
-*{
+body{
 background-color:teal;
 }
 
@@ -6,9 +6,10 @@ background-color:teal;
 text-align : center;
 font-family : sans-serif;
 color : yellow;
+
 }
 .header{
-background-color : red;
+background-color : green;
 }
 .q{
 text-align :center;
