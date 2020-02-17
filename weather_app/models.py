@@ -23,6 +23,8 @@ def check(name):
         r = requests.get(check_url).json()
         
         name = Citynames(city = name)
+        db.sessoin.add(city)
+        db.session.commit()
 
         def cel(temp):
             return int(temp)-273.15
