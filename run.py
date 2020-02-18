@@ -1,4 +1,4 @@
-from weather_app import app
+from weather import app
 
 
 if __name__ == '__main__':

@@ -31,10 +31,9 @@ ______________________________ REQUIREMENTS ____________________________________
 
 
 
->>>GITIGNORE
-      ----------------
+> GITIGNORE
 
-ignore the files mentions in 
+ignore the files mentions in
 
 ex :   *.pyc
         .idea

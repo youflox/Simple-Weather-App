@@ -1,0 +1,30 @@
+{% extends 'layout.html'%}
+
+{% block head%}
+<link rel="stylesheet" type="text/css" href="static/style.css">
+    {% endblock head %}
+
+{% block body %}
+<div class = 'header'>
+<h1 class="title">
+    Weather App
+</h1>
+</div>
+    <form  method = 'post'>
+        <div class="q">
+            <br><br>
+            <label class = 'input_names'>Enter City Name :</label>
+            <input type="text", placeholder="City name", class = 'box_inputs', name = 'query'>
+                <select class = 'Temp' name = 'deg' autofocus>
+                    <option value='0' >°C</option>
+                    <option value='1' >°F</option>
+                </select>
+            <button class="check_btn" >Check</button>
+        </div>
+            {%for report in reports%}
+                <br>{{report}}<br>
+                    {%if deg%}
+                {%endif%}
+            {% endfor %}
+    </form>
+    {% endblock %}
