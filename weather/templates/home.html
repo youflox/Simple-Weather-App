@@ -21,10 +21,20 @@
                 </select>
             <button class="check_btn" >Check</button>
         </div>
-            {%for report in reports%}
-                <br>{{report}}<br>
-                    {%if deg%}
-                {%endif%}
-            {% endfor %}
+
+        <div>
+            <h2 class="q_title">{{reports[0][0].title()}}</h2>
+            {% if text%}
+                {{text}}
+            {%endif%}
+            <br>{{reports[0][1][deg][0]}}{{reports[0][1][deg][1]}}
+            <br>{{reports[0][2]}}
+            <br>{{reports[0][3]}}
+            <br>{{reports[0][4]}}
+        </div>
+
+        <br><br>{{reports[0]}}
+
+
     </form>
     {% endblock %}

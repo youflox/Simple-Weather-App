@@ -2,7 +2,7 @@ from weather import db
 
 class Names(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    city = db.Column(db.String, nullable = False, unique = True)
+    city = db.Column(db.String, nullable = False)
     report = db.relationship('Reports', backref = 'name' )
 
 class Reports(db.Model):

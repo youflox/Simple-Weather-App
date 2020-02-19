@@ -1,7 +1,6 @@
-from weather import db, app
-
 import requests
-url =  'http://api.openweathermap.org/data/2.5/weather?appid=41e49a44177d59caffa315f4fc69de5f&q='
+
+url = 'http://api.openweathermap.org/data/2.5/weather?appid=41e49a44177d59caffa315f4fc69de5f&q='
 
 def check(name):
     try:
@@ -12,6 +11,7 @@ def check(name):
         r = requests.get(check_url).json()
 
         weather.append(name)
+
         def cel(temp):
             return int(temp)-273.15
 
@@ -19,7 +19,7 @@ def check(name):
             return ((float(K)-273.15)*1.8) + 32
 
         for type in types:
-            temp.append((round(cel(r['main'][type]),2),'°C'))
+            temp.append((round(cel(r['main'][type]), 2),'°C'))
             temp.append((round(F(r['main'][type]), 2), '°F'))
         wind = ['wind']
         weather.append(temp)
