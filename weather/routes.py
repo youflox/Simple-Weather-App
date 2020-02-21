@@ -7,16 +7,14 @@ from weather.database import Names
 def home():
     reports = []
     deg = 0
-
-
-
 # -----------------------POST METHOD-----------------------------------
     if request.method == 'POST':
 
+    # q = city name, def = cel or F selected
         q = request.form.get('query')
         deg = int(request.form.get('deg'))
 
-        # adding query to database
+    # adding query to database
         city = Names(city=q)
         db.session.add(city)
         db.session.commit()
@@ -27,7 +25,7 @@ def home():
             reports.append(report)
         text = 'Your Search results here'
 
-        return render_template('home.html',text=text, deg=deg, reports=reports)
+        return render_template('home.html', text=text, deg=deg, reports=reports)
 # ----------------------- END POST METHOD-----------------------------------
     # getting data from API with existing names in db
     names = Names.query.order_by(Names.id.desc()).limit(3).all()

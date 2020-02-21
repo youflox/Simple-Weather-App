@@ -13,28 +13,58 @@
     <form  method = 'post'>
         <div class="q">
             <br><br>
-            <label class = 'input_names'>Enter City Name :</label>
-            <input type="text", placeholder="City name", class = 'box_inputs', name = 'query'>
-                <select class = 'Temp' name = 'deg' autofocus>
-                    <option value='0' >°C</option>
-                    <option value='1' >°F</option>
+            <label class = 'q_text'>Enter City Name : </label>
+            <input type="text", placeholder="City name", class = 'box_inputs', name = 'query'>&nbsp&nbsp
+                <select class = 'box_deg' name = 'deg' autofocus>
+                    <option value='0' > °C</option>
+                    <option value='1' > °F</option>
                 </select>
+            &nbsp&nbsp
             <button class="check_btn" >Check</button>
         </div>
+        <br><br><br>
 
-        <div>
-            <h2 class="q_title">{{reports[0][0].title()}}</h2>
-            {% if text%}
-                {{text}}
-            {%endif%}
-            <br>{{reports[0][1][deg][0]}}{{reports[0][1][deg][1]}}
-            <br>{{reports[0][2]}}
-            <br>{{reports[0][3]}}
-            <br>{{reports[0][4]}}
+        <div class="results">
+            {%for report in reports%}
+<!--        # If city not found Error gets catched and displayed-->
+            <div class="r_error">
+                 {% if report == 'City not found, try another one.'%}
+                <h3 class="r_text">Sorry! No city Found with that name.</h3>
+                <h3 class="r_text"> Enter nearby City name.</h3>
+                <h3 class="q_pre"> Previously searched by Users.</h3>
+                    {{pass}}
+
+<!--        # if no error All previous cities reports are reflected-->
+                {%else%}
+
+                    <h2 class="r_name">{{report[0].title()}}</h2>
+
+<!--       # if Celcius is selected-->
+               <div class="temp_grid">
+                {% if deg==0 %}
+                    <h3 class="r_temp">Temperature : {{report[1][0][0]}}{{report[1][0][1]}}</h3>
+                    <h3 class="r_feel">Feels like  : {{report[1][2][0]}}{{report[1][2][1]}}</h3>
+                    <h3 class="r_min">Min Temp    : {{report[1][4][0]}}{{report[1][4][1]}}</h3>
+                    <h3 class="r_max">Max Temp    : {{report[1][6][0]}}{{report[1][6][1]}}</h3>
+
+<!--      # If other than celcious is selected-->
+                {% else %}
+                    <h3 class="r_temp">Temperature : {{report[1][1][0]}}{{report[1][1][1]}}</h3>
+                    <h3 class="r_feel">Feels like  : {{report[1][3][0]}}{{report[1][3][1]}}</h3>
+                    <h3 class="r_min">Min Temp    : {{report[1][5][0]}}{{report[1][5][1]}}</h3>
+                    <h3 class="r_max">Max Temp    : {{report[1][7][0]}}{{report[1][7][1]}}</h3>
+                {% endif %}
+
+                    <h3 class="r_wind">{{report[2][0]}} : {{report[2][1]}} km/h</h3>
+                    <h3 class="r_sky">{{report[3]}}</h3>
+                    <h3 class="r_rise"> Sun rise :{{report[4][1]}}</h3>
+                    <h3 class="r_set">Sun set :{{report[4][2]}} </h3>
+                {% endif %}
+               </div>
+            </div>
+<!--            <hr class="line_break">-->
+            {%endfor%}
         </div>
-
-        <br><br>{{reports[0]}}
-
-
     </form>
     {% endblock %}
+

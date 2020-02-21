@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 url = 'http://api.openweathermap.org/data/2.5/weather?appid=41e49a44177d59caffa315f4fc69de5f&q='
 
@@ -19,8 +20,8 @@ def check(name):
             return ((float(K)-273.15)*1.8) + 32
 
         for type in types:
-            temp.append((round(cel(r['main'][type]), 2),'°C'))
-            temp.append((round(F(r['main'][type]), 2), '°F'))
+            temp.append((int(cel(r['main'][type])+1),'°C'))
+            temp.append((int(F(r['main'][type])+1), '°F'))
         wind = ['wind']
         weather.append(temp)
         w = r['wind']['speed']
@@ -30,8 +31,8 @@ def check(name):
         weather.append(r['weather'][0]['description'])
 
         sun = ['sun']
-        sun.append(r['sys']['sunrise'])
-        sun.append(r['sys']['sunset'])
+        sun.append(datetime.fromtimestamp(r['sys']['sunrise']).strftime(" %I:%M:%S am"))
+        sun.append(datetime.fromtimestamp(r['sys']['sunset']).strftime(" %I:%M:%S pm"))
         weather.append(sun)
 
         return weather
